@@ -5,6 +5,7 @@
 [![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://python.org)
 [![MCP](https://img.shields.io/badge/MCP-1.1.0+-green.svg)](https://modelcontextprotocol.io/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![smithery badge](https://smithery.ai/badge/@HundunOnline/mcp-metaso)](https://smithery.ai/server/@HundunOnline/mcp-metaso)
 
 ## ✨ 功能特性
 
@@ -15,25 +16,35 @@
 
 ## 🚀 快速开始
 
-### 1. 安装依赖
+### 安装依赖
+
+#### Installing via Smithery
+
+To install mcp-metaso for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@HundunOnline/mcp-metaso):
+
+```bash
+npx -y @smithery/cli install @HundunOnline/mcp-metaso --client claude
+```
+
+#### 手动安装
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. 配置 API 密钥
+### 配置 API 密钥
 
 ```bash
 export METASO_API_KEY="your-api-key-here"
 ```
 
-### 3. 启动服务器
+### 启动服务器
 
 ```bash
 python server.py
 ```
 
-### 4. 测试功能
+### 测试功能
 
 ```bash
 python test_all_scopes.py
