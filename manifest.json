@@ -1,0 +1,137 @@
+{
+  "name": "mcp-metaso",
+  "displayName": "MCP Metaso搜索引擎",
+  "version": "1.1.0",
+  "description": "基于Metaso AI的多维搜索引擎MCP服务器，支持网页、文库、学术、图片、视频、播客六种搜索类型，以及网页内容解析功能。",
+  "author": "MCP Metaso Contributors",
+  "license": "MIT",
+  "homepage": "https://github.com/HundunOnline/mcp-metaso",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HundunOnline/mcp-metaso.git"
+  },
+  "icon": "icon.png",
+  "keywords": [
+    "搜索",
+    "AI",
+    "Metaso",
+    "网页解析",
+    "多维搜索",
+    "中文搜索",
+    "学术搜索"
+  ],
+  "categories": [
+    "search",
+    "productivity",
+    "research"
+  ],
+  "server": {
+    "type": "python",
+    "main": "server.py",
+    "requirements": "requirements.txt"
+  },
+  "configuration": [
+    {
+      "name": "METASO_API_KEY",
+      "displayName": "Metaso API密钥",
+      "description": "您的Metaso API密钥，用于访问搜索服务",
+      "type": "string",
+      "required": true,
+      "sensitive": true,
+      "placeholder": "输入您的Metaso API密钥"
+    },
+    {
+      "name": "MCP_LOG_LEVEL",
+      "displayName": "日志级别",
+      "description": "设置MCP服务器的日志级别",
+      "type": "select",
+      "required": false,
+      "default": "INFO",
+      "options": [
+        { "value": "DEBUG", "label": "调试" },
+        { "value": "INFO", "label": "信息" },
+        { "value": "WARNING", "label": "警告" },
+        { "value": "ERROR", "label": "错误" }
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "name": "metaso_search",
+      "description": "多维搜索工具，支持网页、文库、学术、图片、视频、播客六种搜索类型",
+      "parameters": {
+        "query": {
+          "type": "string",
+          "description": "搜索查询词",
+          "required": true
+        },
+        "scope": {
+          "type": "string",
+          "description": "搜索范围",
+          "enum": ["webpage", "document", "scholar", "image", "video", "podcast"],
+          "default": "webpage"
+        },
+        "include_summary": {
+          "type": "boolean", 
+          "description": "是否包含AI摘要",
+          "default": false
+        },
+        "size": {
+          "type": "integer",
+          "description": "返回结果数量",
+          "minimum": 1,
+          "maximum": 20,
+          "default": 10
+        }
+      }
+    },
+    {
+      "name": "metaso_reader",
+      "description": "网页内容解析工具，提取网页内容并转换为Markdown或JSON格式",
+      "parameters": {
+        "url": {
+          "type": "string",
+          "description": "要解析的网页URL",
+          "required": true
+        },
+        "output_format": {
+          "type": "string",
+          "description": "输出格式",
+          "enum": ["markdown", "json"],
+          "default": "markdown"
+        }
+      }
+    }
+  ],
+  "permissions": [
+    "network.http",
+    "network.https"
+  ],
+  "supportedPlatforms": [
+    "windows",
+    "macos",
+    "linux"
+  ],
+  "minClaudeVersion": "1.0.0",
+  "dxtVersion": "1.0",
+  "installationNotes": "安装后需要配置Metaso API密钥。您可以从 https://metaso.cn 获取API密钥。",
+  "usage": {
+    "examples": [
+      {
+        "title": "网页搜索",
+        "description": "搜索关于人工智能的最新信息",
+        "command": "搜索人工智能的最新发展"
+      },
+      {
+        "title": "学术搜索", 
+        "description": "搜索机器学习相关的学术论文",
+        "command": "使用学术搜索查找机器学习论文"
+      },
+      {
+        "title": "网页解析",
+        "description": "解析网页内容并提取信息",
+        "command": "解析这个网页的内容: https://example.com"
+      }
+    ]
+  }
+} 

@@ -8,7 +8,7 @@
 
 如果您发现了错误或有改进建议：
 
-1. 首先搜索 [现有 Issues](https://github.com/your-username/mcp-metaso/issues) 确认问题未被报告
+1. 首先搜索 [现有 Issues](https://github.com/HundunOnline/mcp-metaso/issues) 确认问题未被报告
 2. 创建新的 Issue，请包含：
    - 清晰的问题描述
    - 重现步骤
@@ -20,7 +20,7 @@
 
 1. **Fork 项目**
    ```bash
-   git clone https://github.com/your-username/mcp-metaso.git
+   git clone https://github.com/HundunOnline/mcp-metaso.git
    cd mcp-metaso
    ```
 
@@ -198,7 +198,7 @@ mcp-metaso/
 
 如果您在贡献过程中遇到问题：
 
-1. 查阅现有的 [Issues](https://github.com/your-username/mcp-metaso/issues)
+1. 查阅现有的 [Issues](https://github.com/HundunOnline/mcp-metaso/issues)
 2. 查看 [README](README.md) 和项目文档
 3. 创建新的 Issue 寻求帮助
 

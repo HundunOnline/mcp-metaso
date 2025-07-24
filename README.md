@@ -41,6 +41,38 @@ python test_all_scopes.py
 
 ## 🔧 Claude Desktop 集成
 
+### DXT扩展安装（最简单的方式）🌟
+
+Claude Desktop现在支持DXT扩展格式，让安装变得像安装浏览器扩展一样简单！
+
+1. **下载DXT扩展文件**
+   - 从[发布页面](https://github.com/HundunOnline/mcp-metaso/releases)下载 `mcp-metaso-1.1.0.dxt`
+
+2. **双击安装**
+   - 打开Claude Desktop应用
+   - 导航到 **设置 > 扩展**
+   - 点击"从.dxt文件安装"并选择下载的文件
+   - 在配置界面输入您的Metaso API密钥
+   - 点击"安装"完成
+
+3. **立即使用**
+   - 重启Claude Desktop
+   - 开始使用："搜索人工智能的最新发展"
+
+### 自动安装工具（传统方式）
+
+如果您更喜欢传统的安装方式：
+
+```bash
+# 自动安装到Claude Desktop
+python tools/install_claude.py
+
+# 或使用配置生成器
+python tools/claude_config_generator.py --save
+```
+
+### 手动配置
+
 在 Claude Desktop 配置文件中添加：
 
 ```json
@@ -57,9 +89,48 @@ python test_all_scopes.py
 }
 ```
 
-配置文件位置：
+**配置文件位置：**
 - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+
+### 验证配置
+
+安装完成后，验证配置是否正确：
+
+```bash
+# 验证MCP服务器配置
+python tools/validate_config.py
+
+# 生成诊断报告
+python tools/validate_config.py --report
+```
+
+### 故障排除
+
+如果Claude Desktop没有显示🔨图标：
+
+1. **重启Claude Desktop** - 配置更改需要重启应用
+2. **检查路径** - 确保使用绝对路径指向server.py
+3. **验证API密钥** - 确保METASO_API_KEY已正确设置
+4. **查看日志** - 检查Claude Desktop日志文件夹中的错误信息
+
+**常用工具命令：**
+```bash
+# 生成配置
+python tools/claude_config_generator.py --api-key your_key --save
+
+# 自动安装
+python tools/install_claude.py --auto-confirm
+
+# 卸载服务器
+python tools/install_claude.py --uninstall
+
+# 验证配置
+python tools/validate_config.py
+
+# 使用启动包装器
+python tools/launcher.py
+```
 
 ## 📖 可用工具
 
@@ -99,12 +170,18 @@ metaso_reader(
 
 ```
 mcp-metaso/
-├── server.py              # 主服务器实现 (FastMCP)
-├── config.py              # 配置管理
-├── test_all_scopes.py     # 功能测试脚本
-├── requirements.txt       # 项目依赖
-├── setup.py              # 包安装配置
-└── README.md             # 项目说明
+├── server.py                      # 主服务器实现 (FastMCP)
+├── config.py                      # 配置管理
+├── tools/                         # Claude Desktop集成工具
+│   ├── __init__.py               # 工具包初始化
+│   ├── claude_config_generator.py # Claude配置生成器
+│   ├── install_claude.py         # 自动安装脚本
+│   ├── validate_config.py        # 配置验证工具
+│   └── launcher.py               # 启动包装器
+├── test_all_scopes.py            # 功能测试脚本
+├── requirements.txt              # 项目依赖
+├── setup.py                      # 包安装配置
+└── README.md                     # 项目说明
 ```
 
 ## 🔨 开发
@@ -136,6 +213,19 @@ mcp-metaso/
    ```bash
    python test_all_scopes.py
    ```
+
+### 构建DXT扩展
+
+开发者可以构建DXT扩展包：
+
+```bash
+# 构建DXT扩展包
+python build-dxt.py
+
+# 这将生成：
+# - mcp-metaso-1.1.0.dxt (扩展包)
+# - DXT安装指南.md (用户安装说明)
+```
 
 ### 添加新功能
 
