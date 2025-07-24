@@ -61,7 +61,7 @@ def validate_manifest():
         with open(manifest_path, 'r', encoding='utf-8') as f:
             manifest = json.load(f)
         
-        required_fields = ['name', 'displayName', 'version', 'description', 'server']
+        required_fields = ['name', 'version', 'description', 'author', 'server', 'dxt_version']
         for field in required_fields:
             if field not in manifest:
                 print(f"❌ manifest.json缺少必需字段: {field}")

@@ -2,8 +2,11 @@
 """MCP Metaso服务器 - 使用官方FastMCP SDK实现"""
 import asyncio
 import logging
+import os
+import sys
 from typing import Any
 import httpx
+import mcp
 from mcp.server.fastmcp import FastMCP
 from config import config
 
