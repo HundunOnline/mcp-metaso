@@ -7,9 +7,18 @@ import httpx
 from mcp.server.fastmcp import FastMCP
 from config import config
 
-# 设置日志
-logging.basicConfig(level=logging.INFO)
+# 设置日志 - 适配Claude Desktop环境
+log_level = os.environ.get("MCP_LOG_LEVEL", "INFO").upper()
+logging.basicConfig(
+    level=getattr(logging, log_level, logging.INFO),
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+    stream=sys.stderr  # Claude Desktop需要日志输出到stderr
+)
 logger = logging.getLogger(__name__)
+
+# 降低第三方库的日志级别
+logging.getLogger("httpx").setLevel(logging.WARNING)
+logging.getLogger("urllib3").setLevel(logging.WARNING)
 
 # 创建FastMCP服务器实例
 mcp = FastMCP("mcp-metaso")
@@ -370,15 +379,27 @@ async def metaso_reader(url: str, output_format: str = "markdown") -> str:
 def main():
     """主函数"""
     logger.info("启动MCP Metaso服务器...")
+    logger.info(f"Python版本: {sys.version}")
+    logger.info(f"MCP SDK版本: {mcp.__version__ if hasattr(mcp, '__version__') else 'unknown'}")
     
     # 检查API密钥
     if not config.api_key:
-        logger.error("错误: 未设置METASO_API_KEY环境变量")
-        logger.error("请使用: export METASO_API_KEY='your_key_here'")
-        return
+        logger.warning("警告: 未设置METASO_API_KEY环境变量")
+        logger.warning("服务器将启动但搜索功能不可用")
+        logger.warning("请在Claude Desktop配置中添加API密钥或设置环境变量:")
+        logger.warning("export METASO_API_KEY='your_key_here'")
+    else:
+        logger.info("API密钥已配置，服务器功能完整")
     
-    # 使用FastMCP的run方法启动服务器
-    mcp.run()
+    try:
+        # 使用FastMCP的run方法启动服务器
+        logger.info("MCP Metaso服务器启动成功，等待客户端连接...")
+        mcp.run()
+    except KeyboardInterrupt:
+        logger.info("收到中断信号，正在关闭服务器...")
+    except Exception as e:
+        logger.error(f"服务器运行出错: {e}")
+        raise
 
 
 if __name__ == "__main__":

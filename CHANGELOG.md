@@ -1,9 +1,51 @@
-# 变更日志
+# 更新日志
 
-本文档记录了项目的所有重要变更。
+## [1.1.0] - 2025-07-24
 
-格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
-并且本项目遵循 [语义化版本](https://semver.org/lang/zh-CN/) 规范。
+### ✨ 重大新功能
+- 🎁 **DXT扩展支持** - 支持Claude Desktop官方DXT扩展格式
+  - 创建 `manifest.json` - 完整的DXT扩展清单文件
+  - 创建 `build-dxt.py` - DXT扩展打包脚本
+  - 自动生成 `mcp-metaso-1.1.0.dxt` - 可双击安装的扩展包
+  - 用户界面友好的API密钥配置
+  - 自动图标生成和包装
+
+### 新增功能
+- 🔧 **Claude Desktop 集成优化** - 全面支持 Claude 官方桌面版配置格式
+  - 新增 `tools/` 目录，包含完整的 Claude Desktop 集成工具套件
+  - 新增 `claude_config_generator.py` - 自动生成 Claude Desktop 配置文件
+  - 新增 `install_claude.py` - 一键自动安装到 Claude Desktop
+  - 新增 `validate_config.py` - 配置验证和诊断工具
+  - 新增 `launcher.py` - 启动包装器，提供更好的错误处理
+
+### 改进
+- 📝 **文档优化** - 大幅改进 Claude Desktop 集成说明
+  - 添加DXT扩展安装教程
+  - 添加故障排除指南
+  - 添加配置验证步骤
+- 🔧 **服务器优化** - 改进 `server.py` 以更好适配 Claude Desktop 环境
+  - 优化日志输出格式和级别
+  - 改进错误处理和启动流程
+  - 增强环境检查和API密钥验证
+- 📦 **包管理** - 更新 `setup.py` 添加新的控制台命令
+  - `mcp-metaso-config` - 配置生成器
+  - `mcp-metaso-install` - 自动安装器
+  - `mcp-metaso-validate` - 配置验证器
+  - `mcp-metaso-launcher` - 启动包装器
+
+### 技术细节
+- **DXT扩展技术栈**
+  - 标准化的 manifest.json 配置格式
+  - 自动打包为 ZIP 格式的 .dxt 文件
+  - 敏感信息（API密钥）的安全存储
+  - 跨平台兼容性支持（Windows/macOS/Linux）
+- **传统安装支持**
+  - 支持跨平台 Claude Desktop 配置文件自动检测（macOS/Windows/Linux）
+  - 自动备份现有配置，支持配置合并
+  - 完整的依赖检查和环境验证
+  - 详细的诊断报告生成功能
+
+---
 
 ## [1.0.0] - 2025-07-24
 
