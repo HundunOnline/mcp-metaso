@@ -3,7 +3,10 @@
   "displayName": "MCP Metaso搜索引擎",
   "version": "1.1.0",
   "description": "基于Metaso AI的多维搜索引擎MCP服务器，支持网页、文库、学术、图片、视频、播客六种搜索类型，以及网页内容解析功能。",
-  "author": "MCP Metaso Contributors",
+  "author": {
+    "name": "snowshadow",
+    "url": "https://github.com/HundunOnline/mcp-metaso"
+  },
   "license": "MIT",
   "homepage": "https://github.com/HundunOnline/mcp-metaso",
   "repository": {
@@ -27,24 +30,28 @@
   ],
   "server": {
     "type": "python",
-    "main": "server.py",
-    "requirements": "requirements.txt"
+    "entry_point": "server.py",
+    "mcp_config": {
+      "command": "/usr/local/Caskroom/miniconda/base/bin/python",
+      "args": ["${__dirname}/server.py"],
+      "env": {
+        "METASO_API_KEY": "${user_config.api_key}",
+        "MCP_LOG_LEVEL": "${user_config.log_level}"
+      }
+    }
   },
-  "configuration": [
-    {
-      "name": "METASO_API_KEY",
-      "displayName": "Metaso API密钥",
-      "description": "您的Metaso API密钥，用于访问搜索服务",
+  "user_config": {
+    "api_key": {
       "type": "string",
-      "required": true,
+      "title": "Metaso API密钥",
+      "description": "您的Metaso API密钥，用于访问搜索服务",
       "sensitive": true,
-      "placeholder": "输入您的Metaso API密钥"
+      "required": true
     },
-    {
-      "name": "MCP_LOG_LEVEL",
-      "displayName": "日志级别",
+    "log_level": {
+      "type": "string",
+      "title": "日志级别",
       "description": "设置MCP服务器的日志级别",
-      "type": "select",
       "required": false,
       "default": "INFO",
       "options": [
@@ -54,7 +61,7 @@
         { "value": "ERROR", "label": "错误" }
       ]
     }
-  ],
+  },
   "tools": [
     {
       "name": "metaso_search",
@@ -112,8 +119,10 @@
     "macos",
     "linux"
   ],
-  "minClaudeVersion": "1.0.0",
-  "dxtVersion": "1.0",
+  "dxt_version": "1.0.0",
+  "engines": {
+    "claude": ">=1.0.0"
+  },
   "installationNotes": "安装后需要配置Metaso API密钥。您可以从 https://metaso.cn 获取API密钥。",
   "usage": {
     "examples": [
