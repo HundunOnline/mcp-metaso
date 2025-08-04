@@ -1,6 +1,6 @@
 # MCP Metaso
 
-> 一个基于 [MCP (Model Context Protocol)](https://modelcontextprotocol.io/) 的 Metaso AI 搜索引擎服务器，使用官方 FastMCP SDK 构建。
+> 一个基于 [MCP (Model Context Protocol)](https://modelcontextprotocol.io/) 的 [秘塔 AI 搜索引擎](https://metaso.cn/) 服务器，使用官方 FastMCP SDK 构建。
 
 [![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://python.org)
 [![MCP](https://img.shields.io/badge/MCP-1.1.0+-green.svg)](https://modelcontextprotocol.io/)
@@ -195,7 +195,7 @@ mcp-metaso/
 
 1. 克隆项目：
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/HundunOnline/mcp-metaso
    cd mcp-metaso
    ```
 
@@ -214,9 +214,9 @@ mcp-metaso/
    python test_all_scopes.py
    ```
 
-### 构建DXT扩展
+### 自定义DXT扩展
 
-开发者可以构建DXT扩展包：
+开发者可以自定义DXT扩展包：
 
 ```bash
 # 构建DXT扩展包
